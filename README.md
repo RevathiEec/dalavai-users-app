@@ -10,7 +10,7 @@ A simple and elegant user directory built using \*\*React + Material UI (MUI)\*\
 
 
 
-\[https://dalavai-users-app.vercel.app](https://dalavai-users-app.vercel.app)
+\https://dalavai-users-app.vercel.app
 
 
 
