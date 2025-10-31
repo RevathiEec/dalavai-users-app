@@ -33,6 +33,15 @@ function App() {
     user.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const handleSort = (e) => {
+    const value = e.target.value;
+    if (value === "az") {
+      setUsers([...users].sort((a, b) => a.name.localeCompare(b.name)));
+    } else if (value === "za") {
+      setUsers([...users].sort((a, b) => b.name.localeCompare(a.name)));
+    }
+  };
+
   return (
     <div className={darkMode ? "app dark" : "app light"}>
       <div className="bubbles"></div>
@@ -41,7 +50,11 @@ function App() {
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6">User Directory</Typography>
 
-          <IconButton color="inherit" onClick={() => setDarkMode(!darkMode)}>
+          <IconButton
+            color="inherit"
+            onClick={() => setDarkMode(!darkMode)}
+            className="themeToggle"
+          >
             {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>
@@ -55,6 +68,15 @@ function App() {
           onChange={(e) => setSearch(e.target.value)}
           className="searchBox"
         />
+
+        {/* Sorting Dropdown */}
+        <div style={{ marginTop: "15px", textAlign: "right" }}>
+          <select onChange={handleSort} className="sortDropdown">
+            <option value="">Sort</option>
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+          </select>
+        </div>
 
         <Grid container spacing={3} style={{ marginTop: "20px" }}>
           {filteredUsers.map((user) => (
